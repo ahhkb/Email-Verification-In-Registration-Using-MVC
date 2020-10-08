@@ -1,0 +1,71 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Verify Account</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<body class="authentication-bg authentication-bg-pattern">
+
+    <div class="account-pages mt-5 mb-5">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-8 col-lg-6 col-xl-5">
+                    @if (ViewBag.status != null & Convert.ToBoolean(ViewBag.status))
+                    {
+                        <div class="card">
+
+                            <div class="card-body p-4">
+
+                                <div class="text-center w-75 m-auto">
+                                    <a href="index.html">
+                                        <span>
+                                            <img src="~/Content/theme/thumb-1920-938465.jpg" alt="" height="70px">
+                                        </span>
+                                    </a>
+                                    <p class="text-muted mb-4 mt-3">Your account has been verified successfully</p>
+
+
+                                </div>
+
+                                <h5 class="auth-title"></h5>
+                                <br />
+
+                                <div class="text-center w-75 m-auto">
+                                    <header class="site-header" id="header">
+                                        <h1 class="site-header__title" data-lead-id="site-header-title">THANK YOU!</h1>
+                                    </header>
+                                </div>
+                                <br />
+                                <div class="form-group mb-0 text-center">
+                                    <a href="/Login/User"><button class="btn btn-danger btn-block" type="submit" id="btnSave" onclick="">Log In</button></a>
+                                </div>
+
+                            </div> <!-- end card-body -->
+                        </div>
+                    }
+
+                    <!-- end card -->
+                    <!-- end row -->
+
+                </div> <!-- end col -->
+            </div>
+            <!-- end row -->
+        </div>
+        <!-- end container -->
+    </div>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+</body>
+</html>

@@ -33,17 +33,16 @@ namespace EmailVerification.Controllers
             if (msg == "Success")
             {
                 bool Status = false;
-                
+
                 //
                 // Model Validation 
                 if (ModelState.IsValid)
                 {
 
                     SendVerificationLinkEmail(user.Email, user.ActivationCode.ToString());
-
+                    message = "Registration successfully done. Account activation link " + " has been sent to your email id:" + user.Email;
                     Status = true;
-
-
+                    
                     return View("SuccessPage");
 
                 }
@@ -76,17 +75,17 @@ namespace EmailVerification.Controllers
             {
                 var verifyUrl = "/User/VerifyAccount/" + activationCode;
                 var link = Request.Url.AbsoluteUri.Replace(Request.Url.PathAndQuery, verifyUrl);
-                mm.Subject = "Example";
-                mm.Body = "We are excited to tell you that your  account is" +
-                " successfully created. Please click on the below link to verify your account" +
-                " <a href='" + link + "'>" + link + "</a> ";
+                mm.Subject = "ASP.NET MVC";
+                mm.Body = "<br/><br/>We are excited to tell you that your  account is" +
+        " successfully created. Please click on the below link to verify your account " +
+        " <br/><br/><a href='" + link + "'>" + link + "</a> ";
 
-                mm.IsBodyHtml = false;
+                mm.IsBodyHtml = true;
                 SmtpClient smtp = new SmtpClient();
                 smtp.Host = "smtp.gmail.com";
 
                 smtp.UseDefaultCredentials = false;
-                smtp.Credentials = new System.Net.NetworkCredential("syedshah6921@gmail.com", "*********");
+                smtp.Credentials = new System.Net.NetworkCredential("syedshah6921@gmail.com", "@123sunset");
                 smtp.EnableSsl = true;
 
                 smtp.Port = 587;
@@ -102,7 +101,7 @@ namespace EmailVerification.Controllers
             bool status = false;
             using (EmailVerificationEntities db = new EmailVerificationEntities())
             {
-               // db.Configuration.ValidateOnSaveEnabled = false;
+                // db.Configuration.ValidateOnSaveEnabled = false;
                 var v = db.UserRegistrations.Where(x => x.ActivationCode == new Guid(id)).FirstOrDefault();
                 if (v != null)
                 {
@@ -117,7 +116,7 @@ namespace EmailVerification.Controllers
 
             }
             ViewBag.status = status;
-            return RedirectToAction("Login");
+            return View();
 
         }
 
