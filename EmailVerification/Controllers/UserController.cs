@@ -19,6 +19,29 @@ namespace EmailVerification.Controllers
             return View();
         }
 
+        [HttpGet]
+        public ActionResult Login()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Login(UserRegistration login)
+        {
+           var u = service.Userlogin(login);
+            if (u != null)
+            {
+
+                return RedirectToAction("Profile");
+            }
+            else
+            {
+                ViewBag.msg = "no such record or user account found";
+            }
+            return View();
+        }
+
+
         public ActionResult Register()
         {
             return View();
@@ -28,7 +51,7 @@ namespace EmailVerification.Controllers
 
         public ActionResult Register([Bind(Exclude = "IsEmailVerified,ActivationCode")] UserRegistration user)
         {
-            var msg = service.Comp_create(user);
+            var msg = service.user_Register(user);
             string message = "";
             if (msg == "Success")
             {
@@ -85,7 +108,7 @@ namespace EmailVerification.Controllers
                 smtp.Host = "smtp.gmail.com";
 
                 smtp.UseDefaultCredentials = false;
-                smtp.Credentials = new System.Net.NetworkCredential("syedshah6921@gmail.com", "@123sunset");
+                smtp.Credentials = new System.Net.NetworkCredential("syedshah6921@gmail.com", "******");
                 smtp.EnableSsl = true;
 
                 smtp.Port = 587;
@@ -123,6 +146,12 @@ namespace EmailVerification.Controllers
 
         public ActionResult SuccessPage()
         {
+            return View();
+        }
+
+        public ActionResult Profile ()
+        {
+
             return View();
         }
     }

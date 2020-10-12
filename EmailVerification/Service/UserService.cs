@@ -10,7 +10,7 @@ namespace EmailVerification.Service
     {
         EmailVerificationEntities db = new EmailVerificationEntities();
 
-        public object Comp_create(UserRegistration user)
+        public object user_Register(UserRegistration user)
         {
             user.ActivationCode = Guid.NewGuid();
             user.IsEmailVerified = false;
@@ -45,5 +45,13 @@ namespace EmailVerification.Service
                 return ex;
             }
         }
+
+        public object Userlogin(UserRegistration user)
+        {
+            user = db.UserRegistrations.Where(x => x.Email == user.Email && x.Password == user.Password).SingleOrDefault();
+            return user;
+        }
+
+
     }
 }

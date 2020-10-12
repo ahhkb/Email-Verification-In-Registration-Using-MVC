@@ -211,6 +211,8 @@
     <Content Include="Views\User\Register.cshtml" />
     <Content Include="Views\User\SuccessPage.cshtml" />
     <Content Include="Views\User\VerifyAccount.cshtml" />
+    <Content Include="Views\User\Login.cshtml" />
+    <Content Include="Views\User\Profile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
